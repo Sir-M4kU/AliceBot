@@ -1,0 +1,29 @@
+{
+  "name": "alicebot",
+  "version": "1.0.0",
+  "description": "Proyecto personal de bot de Discord",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m4kuwu/AliceBot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "music",
+    "miscellaneous"
+  ],
+  "author": "m4kuwu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m4kuwu/AliceBot/issues"
+  },
+  "homepage": "https://github.com/m4kuwu/AliceBot#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
