@@ -4,8 +4,9 @@
   "description": "Proyecto personal de bot de Discord",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "bot": "node index.js",
+    "dev": "nodemon index.js",
+    "deploy-commands": "node deploy-commands.js"
   },
   "repository": {
     "type": "git",
