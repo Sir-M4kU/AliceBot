@@ -5,6 +5,6 @@ module.exports = {
 		.setName('ping')
 		.setDescription('Responde mostrando la latencia del bot.'),
 	async execute(interaction) {
-		await interaction.reply({ content: `¡Pong!\nLa latencia fue de: ${interaction.client.ws.ping}ms.`, ephemeral: true });
+		await interaction.reply({ content: `¡Pong!\nLa latencia fue de: ${interaction.client.ws.ping}ms.` });
 	},
 };
