@@ -58,7 +58,7 @@ fs.readdirSync('./commands').forEach(dirs => {
 			client.commands.set(command.data.name, command);
 		}
 		else {
-			console.log(`[ATENCION!]\nEl comando ${command} no tiene asignado un valor 'data' o 'execute'.`);
+			console.log(`[ATENCION!]\nEl comando ${command.data} no tiene asignado un valor 'data' o 'execute'.`);
 		}
 	}
 });
