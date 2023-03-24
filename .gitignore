@@ -1,4 +1,6 @@
+# Node modules and package-lock
 node_modules/
-*.env
-config.json
-.eslintrc.json
+package-lock.json
+
+# Env file
+.env
