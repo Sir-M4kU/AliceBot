@@ -12,6 +12,6 @@ module.exports = {
           .setDescription(song.name)
           .setThumbnail(song.thumbnail)
       ]
-    })
+    }).then(msg => setTimeout(() => msg.delete(), 5000))
   }
 }

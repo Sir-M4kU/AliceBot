@@ -13,10 +13,10 @@ module.exports = {
           .setURL(song.url)
           .setThumbnail(song.thumbnail)
           .setFields(
-            { name: 'Pedida por', value: `${song.user}` },
-            { name: 'Duracion', value: `${song.formattedDuration}` }
+            { name: 'Pedida por', value: `${song.user}`, inline: true },
+            { name: 'Duracion', value: `${song.formattedDuration}`, inline: true }
           )
       ]
-    })
+    }).then(msg => setTimeout(() => msg.delete(), (song.isLive) ? 7000 : song.duration * 1000))
   }
 }

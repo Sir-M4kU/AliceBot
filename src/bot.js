@@ -1,4 +1,6 @@
 const { Client, GatewayIntentBits, Collection } = require('discord.js')
+const { SpotifyPlugin } = require('@distube/spotify')
+const { YtDlpPlugin } = require('@distube/yt-dlp')
 const fs = require('node:fs')
 const { DisTube } = require('distube')
 const path = require('node:path')
@@ -13,12 +15,21 @@ const client = new Client({
 })
 
 client.distube = new DisTube(client, {
+  emitNewSongOnly: true,
   leaveOnEmpty: false,
   leaveOnStop: false,
   ytdlOptions: {
     highWaterMark: 1 << 30,
     quality: 'highest'
-  }
+  },
+  plugins: [
+    new SpotifyPlugin({
+      parallel: true,
+      emitEventsAfterFetching: true,
+      api: { clientId: process.env.SPOTIFY_CLIENT_ID, clientSecret: process.env.SPOTIFY_CLIENT_SECRET }
+    }),
+    new YtDlpPlugin()
+  ]
 })
 
 dotenv.config()
