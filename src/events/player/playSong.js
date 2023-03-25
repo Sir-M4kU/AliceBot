@@ -1,5 +1,5 @@
 const { Events } = require('distube')
-const { EmbedBuilder } = require('discord.js')
+const { EmbedBuilder, ActivityType } = require('discord.js')
 
 module.exports = {
   name: Events.PLAY_SONG,
@@ -18,5 +18,6 @@ module.exports = {
           )
       ]
     }).then(msg => setTimeout(() => msg.delete(), (song.isLive) ? 7000 : song.duration * 1000))
+    queue.client.user.setActivity({ name: `${song.name}`, type: ActivityType.Streaming, url: `${song.url}` })
   }
 }

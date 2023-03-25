@@ -21,9 +21,9 @@ module.exports = {
             ).slice(0, 10).join('\n')}`)
             .setFields(
               { name: ' ', value: ' ' },
-              { name: 'Volumen:', value: `${queue.volume}%`, inline: true },
-              { name: 'Modo loop:', value: `${queue.repeatMode ? (queue.repeatMode === 2 ? 'Playlist' : 'Cancion') : 'Apagado'}`, inline: true },
-              { name: 'Duracion total:', value: `${(queue.songs[0].isLive) ? 'Live' : queue.formattedDuration}`, inline: true }
+              { name: '🔈', value: `${queue.volume}%`, inline: true },
+              { name: '🔁', value: `${queue.repeatMode ? (queue.repeatMode === 2 ? 'Playlist' : 'Cancion') : 'Apagado'}`, inline: true },
+              { name: '⌚', value: `${(queue.songs[0].isLive) ? 'Live' : queue.formattedDuration}`, inline: true }
             )
             .setColor('#FFBF00')
         ]
