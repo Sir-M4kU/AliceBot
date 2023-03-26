@@ -7,7 +7,7 @@ module.exports = {
   async execute (interaction) {
     const queue = interaction.client.distube.getQueue(interaction.guildId)
 
-    if (queue === undefined) return await interaction.reply({ content: 'No hay nada en la lista de reproduccion', ephemeral: true })
+    if (queue === undefined) await interaction.reply({ content: 'No hay nada en la lista de reproduccion', ephemeral: true })
 
     await interaction.deferReply()
 
@@ -19,6 +19,7 @@ module.exports = {
             .setDescription(`${queue.songs.map((song, id) =>
               `**${id === 0 ? '▶️' : `${id}.`}** ${song.name} - ${song.formattedDuration}`
             ).slice(0, 10).join('\n')}`)
+            .setThumbnail(queue.songs[0].thumbnail)
             .setFields(
               { name: ' ', value: ' ' },
               { name: '🔈', value: `${queue.volume}%`, inline: true },

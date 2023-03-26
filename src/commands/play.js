@@ -13,14 +13,16 @@ module.exports = {
     const player = interaction.client.distube
     const voiceChannel = interaction.member.voice.channel
     const song = interaction.options.getString('cancion')
-    await interaction.deferReply()
 
-    if (!voiceChannel) return await interaction.editReply({ content: 'No estas en un canal', ephemeral: true })
+    if (!voiceChannel) await interaction.reply({ content: 'No estas en un canal', ephemeral: true })
+
+    await interaction.deferReply()
 
     await player.play(voiceChannel, song, {
       member: interaction.member,
       textChannel: interaction.channel
     })
+
     interaction.deleteReply()
   }
 }

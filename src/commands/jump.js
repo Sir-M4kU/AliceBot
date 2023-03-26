@@ -13,7 +13,7 @@ module.exports = {
     const queue = interaction.client.distube.getQueue(interaction.guildId)
     const num = interaction.options.getNumber('num')
 
-    if (queue === undefined) return await interaction.reply({ content: 'No hay nada reproduciendose', ephemeral: true })
+    if (queue === undefined) await interaction.reply({ content: 'No hay nada reproduciendose', ephemeral: true })
 
     await interaction.deferReply()
 
@@ -22,7 +22,9 @@ module.exports = {
       interaction.deleteReply()
     } catch (err) {
       console.error(err)
-      await interaction.followUp('Ha ocurrido un error').then(msg => setTimeout(() => msg.delete(), 7000))
+      await interaction.followUp('Ha ocurrido un error').then(msg =>
+        setTimeout(() => msg.delete(), 7000)
+      )
     }
   }
 }

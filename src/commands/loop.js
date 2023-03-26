@@ -38,6 +38,8 @@ module.exports = {
 
     queue.setRepeatMode(mode)
     mode = mode ? (mode === 2 ? 'Repetir Playlist' : 'Repetir Cancion') : 'Apagado'
-    await interaction.editReply(`El modo repeticion esta asignado a: **${mode}**`).then(msg => setTimeout(() => msg.delete(), 5000))
+    await interaction.editReply(`El modo repeticion esta asignado a: **${mode}**`).then(msg =>
+      setTimeout(() => msg.delete(), 5000)
+    )
   }
 }
