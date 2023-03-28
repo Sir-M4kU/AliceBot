@@ -56,7 +56,9 @@ for (const file of eventFiles) {
   const filePath = path.join(eventsPath, file)
   const event = require(filePath);
 
-  (event.once) ? client.once(event.name, (...args) => event.execute(...args)) : client.on(event.name, (...args) => event.execute(...args))
+  (event.once)
+    ? client.once(event.name, (...args) => event.execute(...args))
+    : client.on(event.name, (...args) => event.execute(...args))
 }
 
 console.log('Cargando los comandos...')

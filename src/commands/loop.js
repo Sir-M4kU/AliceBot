@@ -18,9 +18,9 @@ module.exports = {
     const option = interaction.options.getString('opcion')
     const queue = interaction.client.distube.getQueue(interaction.guildId)
 
-    await interaction.deferReply()
+    if (queue === undefined) interaction.reply({ content: 'No hay algo reproduciendose ahora mismo.', ephemeral: true })
 
-    if (!queue) interaction.editReply({ content: 'No hay algo reproduciendose ahora mismo.', ephemeral: true })
+    await interaction.deferReply()
 
     let mode
 

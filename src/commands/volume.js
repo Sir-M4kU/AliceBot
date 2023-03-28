@@ -15,7 +15,7 @@ module.exports = {
 
     await interaction.deferReply()
 
-    if (!queue) interaction.editReply({ content: 'No hay algo reproduciendose ahora mismo.', ephemeral: true })
+    if (queue === undefined) interaction.editReply({ content: 'No hay algo reproduciendose ahora mismo.', ephemeral: true })
 
     queue.setVolume(volumen)
     await interaction.editReply(`Se ajusto el volumen al **${volumen}%**.`).then(msg => setTimeout(() => msg.delete(), 5000))
