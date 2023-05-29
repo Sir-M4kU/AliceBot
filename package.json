@@ -2,10 +2,10 @@
   "name": "alicebot",
   "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/bot",
   "scripts": {
-    "test": "nodemon src/bot",
-    "bot": "node src/bot"
+    "test": "nodemon main",
+    "bot": "node main"
   },
   "keywords": [],
   "author": "",
