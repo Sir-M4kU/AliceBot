@@ -14,7 +14,7 @@ module.exports = {
     const voiceChannel = interaction.member.voice.channel
     const song = interaction.options.getString('cancion')
 
-    if (!voiceChannel) await interaction.reply({ content: 'No estas en un canal', ephemeral: true })
+    if (!voiceChannel) interaction.reply({ content: 'No estas en un canal', ephemeral: true })
 
     await interaction.deferReply()
 
