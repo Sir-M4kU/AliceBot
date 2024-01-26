@@ -5,13 +5,8 @@ export default {
 	name: Events.ADD_SONG,
 	distubeEvent: true,
 	async execute(queue: Queue, song: Song) {
-		const {
-			user,
-			isLive,
-			name = "",
-			thumbnail = "",
-			formattedDuration = "",
-		} = song;
+		const { user, isLive, name = "", thumbnail = "" } = song;
+		const { formattedDuration } = queue;
 
 		const embed = new EmbedBuilder()
 			.setColor(0x56d85a)
@@ -23,6 +18,7 @@ export default {
 				{ name: "Duration", value: isLive ? "LIVE" : formattedDuration },
 			);
 
-		await queue.textChannel?.send({ embeds: [embed] });
+		const msg = await queue.textChannel?.send({ embeds: [embed] });
+		setTimeout(async () => await msg?.delete(), 4000);
 	},
 };
