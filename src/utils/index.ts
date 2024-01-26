@@ -14,6 +14,8 @@ const {
 const IS_PROD = ENV === "prod" ? "dist" : "src";
 export const COMMANDS_PATH = path.join(process.cwd(), IS_PROD, "commands");
 export const EVENTS_PATH = path.join(process.cwd(), IS_PROD, "events");
+export const DISCORD_CLYDE =
+	"https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png";
 
 export function initDiscordConfig() {
 	if ((DISCORD_CLIENT_ID || DISCORD_TOKEN) === "") {
