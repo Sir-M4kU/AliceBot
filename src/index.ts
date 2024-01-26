@@ -26,6 +26,7 @@ client.distube = new DisTube(client, {
 	nsfw: true,
 	emitNewSongOnly: true,
 	leaveOnStop: false,
+	searchSongs: 10,
 	ytdlOptions: {
 		highWaterMark: 1 << 20,
 		quality: "highestaudio",
