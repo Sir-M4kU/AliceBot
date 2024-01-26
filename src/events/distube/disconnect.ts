@@ -15,7 +15,9 @@ export default {
 		});
 		await Promise.all([
 			queue.stop(),
-			queue.textChannel?.send({ embeds: [embed] }),
+			queue.textChannel?.send({ embeds: [embed] }).then((msg) => {
+				setTimeout(async () => msg.delete(), 4000);
+			}),
 		]);
 	},
 };
