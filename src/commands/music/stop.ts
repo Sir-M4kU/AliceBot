@@ -2,10 +2,9 @@ import {
 	SlashCommandBuilder,
 	type ChatInputCommandInteraction,
 	type GuildMember,
-	EmbedBuilder,
 } from "discord.js";
 import { type GuildIdResolvable } from "distube";
-import { COLORS, NO_CHANNEL, NO_QUEUE, STOP } from "../../utils/embeds.js";
+import { NO_CHANNEL, NO_QUEUE, STOP } from "../../utils/embeds.js";
 
 export default {
 	data: new SlashCommandBuilder()

@@ -1,5 +1,5 @@
 import { Events, type Queue } from "distube";
-import { ActivityType, EmbedBuilder } from "discord.js";
+import { EmbedBuilder } from "discord.js";
 
 export default {
 	name: Events.DISCONNECT,

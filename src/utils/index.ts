@@ -1,8 +1,6 @@
 import "dotenv/config";
-import process from "node:process";
 import fs from "node:fs/promises";
 import path from "node:path";
-import type { Event } from "../types.js";
 
 const {
 	DISCORD_TOKEN = "",
