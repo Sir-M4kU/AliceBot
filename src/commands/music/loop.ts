@@ -2,9 +2,10 @@ import {
 	SlashCommandBuilder,
 	type ChatInputCommandInteraction,
 	EmbedBuilder,
+	type GuildMember,
 } from "discord.js";
-import { type GuildIdResolvable, RepeatMode } from "distube";
-import { NO_QUEUE } from "../../utils/embeds.js";
+import { type GuildIdResolvable } from "distube";
+import { COLORS, NO_CHANNEL, NO_QUEUE } from "../../utils/embeds.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -24,16 +25,25 @@ export default {
 				.setRequired(true),
 		),
 	async execute(interaction: ChatInputCommandInteraction) {
-		await interaction.deferReply();
+		const defer = await interaction.deferReply();
 		const queue = interaction.client.distube.getQueue(
 			interaction.guild as GuildIdResolvable,
 		);
+		const {
+			voice: { channel },
+		} = interaction.member as GuildMember;
 
-		if (!queue) {
-			const msg = await interaction.editReply({ embeds: [NO_QUEUE] });
-			setTimeout(async () => await msg.delete(), 4000);
+		if (!channel) {
+			await defer.edit({ embeds: [NO_CHANNEL] });
+			setTimeout(async () => await defer.delete(), 4000);
 			return;
 		}
+		if (!queue) {
+			await defer.edit({ embeds: [NO_QUEUE] });
+			setTimeout(async () => await defer.delete(), 4000);
+			return;
+		}
+
 		const option = interaction.options.getNumber("mode") ?? 0;
 		const loopSet = queue.setRepeatMode(option);
 		const loopMsg =
@@ -41,9 +51,9 @@ export default {
 		const embed = new EmbedBuilder()
 			.setTitle("Loop changed")
 			.setDescription(`Loop has changed to ${loopMsg}`)
-			.setColor(0x8e52e1);
+			.setColor(COLORS.Blue);
 
-		const msg = await interaction.editReply({ embeds: [embed] });
-		setTimeout(async () => await msg.delete(), 4000);
+		await defer.edit({ embeds: [embed] });
+		setTimeout(async () => await defer.delete(), 4000);
 	},
 };

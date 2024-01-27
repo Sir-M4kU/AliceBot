@@ -9,8 +9,8 @@ import {
 	StringSelectMenuOptionBuilder,
 	ComponentType,
 } from "discord.js";
-import { SearchResultType, isURL, type GuildIdResolvable } from "distube";
-import { SELECT_END, SELECT_OK } from "../../utils/embeds.js";
+import { SearchResultType, isURL } from "distube";
+import { NO_CHANNEL, SELECT_END, SELECT_OK } from "../../utils/embeds.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -28,15 +28,13 @@ export default {
 			voice: { channel },
 		} = interaction.member as GuildMember;
 		const { distube: player } = interaction.client;
-		await interaction.deferReply();
+		const defer = await interaction.deferReply();
 
 		if (!channel) {
-			const msg = await interaction.followUp({
-				content: "You need to be in a channel to use this command",
+			await defer.edit({
+				embeds: [NO_CHANNEL],
 			});
-
-			setTimeout(async () => await msg.delete(), 4000);
-
+			setTimeout(async () => await defer.delete(), 4000);
 			return;
 		}
 
@@ -45,7 +43,7 @@ export default {
 				member: interaction.member as GuildMember,
 				textChannel: interaction.channel as GuildTextBasedChannel,
 			});
-			await interaction.deleteReply();
+			await defer.delete();
 		} else {
 			const results = await player.search(query, {
 				safeSearch: false,
@@ -77,7 +75,7 @@ export default {
 				);
 			const row = new ActionRowBuilder<typeof select>().addComponents(select);
 
-			const msg = await interaction.followUp({
+			const msg = await defer.edit({
 				embeds: [embed],
 				components: [row],
 			});
@@ -89,23 +87,24 @@ export default {
 
 			collector.on("collect", async (i) => {
 				const selection = i.values[0];
-				const confirmMsg = await interaction.editReply({
+				const update = await i.update({
 					embeds: [SELECT_OK],
 					components: [],
 				});
 				await player.play(channel, selection, {
 					member: i.member as GuildMember,
 					textChannel: i.channel as GuildTextBasedChannel,
+					message: i.message,
 				});
-				await confirmMsg.delete();
+				await update.delete();
 			});
 			collector.once("end", async (collected) => {
 				if (collected.size > 0) return;
-				const msgEnded = await interaction.editReply({
+				await defer.edit({
 					embeds: [SELECT_END],
 					components: [],
 				});
-				setTimeout(async () => await msgEnded.delete(), 4000);
+				setTimeout(async () => await defer.delete(), 4000);
 			});
 		}
 	},
