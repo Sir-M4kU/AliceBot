@@ -103,16 +103,8 @@ export default {
 				}
 				if (deleted) setTimeout(async () => await msg.delete(), 4000);
 			});
-			collector.once("end", async (_, reason) => {
-				if (reason === ID.Next || reason === ID.Prev) {
-					await response.delete();
-					return;
-				}
-				try {
-					await response.delete();
-				} catch (e) {
-					console.log(e);
-				}
+			collector.once("end", async () => {
+				await response.delete();
 			});
 		}
 	},
