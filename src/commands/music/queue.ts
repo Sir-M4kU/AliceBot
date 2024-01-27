@@ -3,10 +3,21 @@ import {
 	type ChatInputCommandInteraction,
 	EmbedBuilder,
 	type GuildMember,
+	ActionRowBuilder,
+	ButtonBuilder,
+	ComponentType,
 } from "discord.js";
 import { type GuildIdResolvable } from "distube";
-import { NO_CHANNEL, NO_QUEUE } from "../../utils/embeds.js";
+import { NO_CHANNEL, NO_QUEUE, STOP } from "../../utils/embeds.js";
 import { DISCORD_CLYDE } from "../../utils/index.js";
+import {
+	LOOP_BUTTON,
+	NEXT_PAGE_BUTTON,
+	PREV_PAGE_BUTTON,
+	SHUFFLE_BUTTON,
+	STOP_BUTTON,
+	ID,
+} from "../../utils/components.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -32,12 +43,12 @@ export default {
 			return;
 		}
 
-		const embed = () => {
+		const embed = (page: number) => {
 			const songs = queue.songs
-				.slice(0, 20)
+				.slice(page, page + 10)
 				.map((song, i) => {
 					const { name = "", formattedDuration = "" } = song;
-					const id = i + 1;
+					const id = page + 10 > queue.songs.length ? i + page + 1 : i + 1;
 					const num = id === 1 ? "▶️" : `${id}.`;
 					return `${num} \t ${name} - ${formattedDuration}\n`;
 				})
@@ -66,6 +77,60 @@ export default {
 					},
 				);
 		};
-		await defer.edit({ embeds: [embed()] });
+		let currentPage = 0;
+		const row = () => {
+			const prevPage = currentPage > 0 && queue.songs.length < currentPage + 10;
+			const nextPage = currentPage < 10 && queue.songs.length > currentPage;
+
+			return new ActionRowBuilder<ButtonBuilder>().addComponents(
+				PREV_PAGE_BUTTON.setDisabled(!prevPage),
+				STOP_BUTTON,
+				NEXT_PAGE_BUTTON.setDisabled(!nextPage),
+				LOOP_BUTTON,
+				SHUFFLE_BUTTON,
+			);
+		};
+		const response = await defer.edit({
+			embeds: [embed(0)],
+			components: [row()],
+		});
+		const collector = response.createMessageComponentCollector({
+			componentType: ComponentType.Button,
+			time: 30_000,
+		});
+
+		collector.on("collect", async (i) => {
+			await i.deferUpdate();
+			if (i.customId === ID.PrevPage) {
+				currentPage -= 10;
+				await response.edit({
+					embeds: [embed(currentPage)],
+					components: [row()],
+				});
+				collector.resetTimer();
+			} else if (i.customId === ID.Stop) {
+				await queue.stop();
+				await response.edit({ embeds: [STOP], components: [] });
+				setTimeout(async () => await response.delete(), 4000);
+				collector.stop(ID.Stop);
+			} else if (i.customId === ID.NextPage) {
+				currentPage += 10;
+				await response.edit({
+					embeds: [embed(currentPage)],
+					components: [row()],
+				});
+				collector.resetTimer();
+			} else if (i.customId === ID.Shuffle) {
+				await queue.shuffle();
+				await response.edit({ embeds: [embed(currentPage)] });
+			} else if (i.customId === ID.Loop) {
+				queue.setRepeatMode();
+				await response.edit({ embeds: [embed(currentPage)] });
+			}
+		});
+		collector.once("end", async (_, reason) => {
+			if (reason === ID.Stop) return;
+			await response.edit({ embeds: [embed(currentPage)], components: [] });
+		});
 	},
 };
