@@ -8,14 +8,13 @@ import {
 	ComponentType,
 } from "discord.js";
 import { type GuildIdResolvable } from "distube";
-import { NO_CHANNEL, NO_QUEUE, STOP } from "../../utils/embeds.js";
+import { NO_CHANNEL, NO_QUEUE } from "../../utils/embeds.js";
 import { DISCORD_CLYDE } from "../../utils/index.js";
 import {
 	LOOP_BUTTON,
 	NEXT_PAGE_BUTTON,
 	PREV_PAGE_BUTTON,
 	SHUFFLE_BUTTON,
-	STOP_BUTTON,
 	ID,
 } from "../../utils/components.js";
 
