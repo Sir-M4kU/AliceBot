@@ -25,12 +25,12 @@ export default {
 	async execute(interaction: ChatInputCommandInteraction) {
 		const query = interaction.options.getString("song") ?? "";
 		const {
-			voice: { channel },
+			voice: { channel, guild },
 		} = interaction.member as GuildMember;
 		const { distube: player } = interaction.client;
 		const defer = await interaction.deferReply();
 
-		if (!channel) {
+		if (guild.id !== interaction.guildId || !channel) {
 			await defer.edit({
 				embeds: [NO_CHANNEL],
 			});

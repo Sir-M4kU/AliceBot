@@ -29,10 +29,10 @@ export default {
 			interaction.guild as GuildIdResolvable,
 		);
 		const {
-			voice: { channel },
+			voice: { channel, guild },
 		} = interaction.member as GuildMember;
 
-		if (!channel) {
+		if (guild.id !== interaction.guildId || !channel) {
 			await defer.edit({ embeds: [NO_CHANNEL] });
 			setTimeout(async () => await defer.delete(), 4000);
 			return;
@@ -101,35 +101,44 @@ export default {
 
 		collector.on("collect", async (i) => {
 			await i.deferUpdate();
+
 			if (i.customId === ID.PrevPage) {
 				currentPage -= 10;
+
 				await response.edit({
 					embeds: [embed(currentPage)],
 					components: [row()],
 				});
+
 				collector.resetTimer();
 			} else if (i.customId === ID.Stop) {
 				await queue.stop();
 				await response.edit({ embeds: [STOP], components: [] });
+
 				setTimeout(async () => await response.delete(), 4000);
+
 				collector.stop(ID.Stop);
 			} else if (i.customId === ID.NextPage) {
 				currentPage += 10;
+
 				await response.edit({
 					embeds: [embed(currentPage)],
 					components: [row()],
 				});
+
 				collector.resetTimer();
 			} else if (i.customId === ID.Shuffle) {
 				await queue.shuffle();
 				await response.edit({ embeds: [embed(currentPage)] });
 			} else if (i.customId === ID.Loop) {
 				queue.setRepeatMode();
+
 				await response.edit({ embeds: [embed(currentPage)] });
 			}
 		});
 		collector.once("end", async (_, reason) => {
 			if (reason === ID.Stop) return;
+
 			await response.edit({ embeds: [embed(currentPage)], components: [] });
 		});
 	},

@@ -25,12 +25,13 @@ export default {
 			interaction.guild as GuildIdResolvable,
 		);
 		const {
-			voice: { channel },
+			voice: { channel, guild },
 		} = interaction.member as GuildMember;
 
-		if (!channel) {
+		if (guild.id !== interaction.guildId || !channel) {
 			await defer.edit({ embeds: [NO_CHANNEL] });
 			setTimeout(async () => await defer.delete(), 4000);
+			return;
 		}
 		if (!queue) {
 			await defer.edit({ embeds: [NO_QUEUE] });
