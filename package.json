@@ -7,6 +7,7 @@
 		"dev:bot": "tsx watch src/index.ts",
 		"dev:refresh": "tsx src/refresh-commands.ts",
 		"test": "echo \"Error: no test specified\" && exit 1",
+		"start:refresh": "node dist/refresh-commands.js",
 		"start:bot": "node .",
 		"build": "tsc"
 	},
@@ -27,6 +28,7 @@
 		"discord.js": "14.14.1",
 		"distube": "4.1.1",
 		"dotenv": "16.3.2",
+		"genius-lyrics": "4.4.6",
 		"libsodium-wrappers": "0.7.13"
 	},
 	"optionalDependencies": {
