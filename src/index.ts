@@ -9,6 +9,7 @@ import {
 	EVENTS_PATH,
 	COMMANDS_PATH,
 } from "./utils/index.js";
+import { Client as GeniusClient } from "genius-lyrics";
 import type { Event, SlashCommand } from "./types.js";
 
 const { DISCORD_TOKEN } = initDiscordConfig();
@@ -41,6 +42,7 @@ client.distube = new DisTube(client, {
 		new SoundCloudPlugin(),
 	],
 });
+client.genius = new GeniusClient();
 
 for (const event of events) {
 	if ("distubeEvent" in event) {

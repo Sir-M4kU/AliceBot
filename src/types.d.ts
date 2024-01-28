@@ -6,6 +6,7 @@ import type {
 	ClientEvents,
 } from "discord.js";
 import type { DisTube, DisTubeEvents } from "distube";
+import type { Client as GeniusClient } from "genius-lyrics";
 
 export interface SlashCommand {
 	data: SlashCommandBuilder;
@@ -31,5 +32,6 @@ declare module "discord.js" {
 	export interface Client {
 		commands: Collection<string, SlashCommand>;
 		distube: DisTube;
+		genius: GeniusClient;
 	}
 }
