@@ -60,3 +60,9 @@ export const NEXT_SONG_ERR = (pos: number, max: number) =>
 			`You tried to jump ${pos} song but there is only ${max} songs left`,
 		)
 		.setColor(COLORS.Red);
+export const NO_LYRICS = new EmbedBuilder()
+	.setTitle("Lyrics not found")
+	.setDescription(
+		"You didn't provide a song name/there is nothing playing right now",
+	)
+	.setColor(COLORS.Red);
