@@ -32,20 +32,31 @@ export const NO_CHANNEL = new EmbedBuilder()
 export const RESUME = new EmbedBuilder()
 	.setTitle("Queue resumed")
 	.setColor(COLORS.Yellow);
-
 export const PAUSE = new EmbedBuilder()
 	.setTitle("Queue paused")
 	.setColor(COLORS.Yellow);
-
 export const STOP = new EmbedBuilder()
 	.setTitle("Queue stopped and cleared")
 	.setDescription("You can add new songs or just disconnect the bot")
 	.setColor(COLORS.Red);
-
 export const SKIP = new EmbedBuilder()
 	.setTitle("Song skipped")
 	.setColor(COLORS.Blue);
-
 export const PREV = new EmbedBuilder()
 	.setTitle("Back to previous song")
 	.setColor(COLORS.Blue);
+
+export const PREV_SONG_ERR = (pos: number, max: number) =>
+	new EmbedBuilder()
+		.setTitle("Jump failed")
+		.setDescription(
+			`You tried to jump ${pos} song but there is only ${max} previous songs`,
+		)
+		.setColor(COLORS.Red);
+export const NEXT_SONG_ERR = (pos: number, max: number) =>
+	new EmbedBuilder()
+		.setTitle("Jump failed")
+		.setDescription(
+			`You tried to jump ${pos} song but there is only ${max} songs left`,
+		)
+		.setColor(COLORS.Red);
