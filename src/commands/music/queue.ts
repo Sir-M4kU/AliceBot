@@ -48,8 +48,8 @@ export default {
 				.slice(page, page + 10)
 				.map((song, i) => {
 					const { name = "", formattedDuration = "" } = song;
-					const id = page + 10 > queue.songs.length ? i + page + 1 : i + 1;
-					const num = id === 1 ? "▶️" : `${id}.`;
+					const id = page + 10 > queue.songs.length ? i + page : i;
+					const num = id === 0 ? "▶️" : `${id}.`;
 					return `${num} \t ${name} - ${formattedDuration}\n`;
 				})
 				.toString()
@@ -65,7 +65,7 @@ export default {
 					name: `Queue of ${interaction.guild?.name}`,
 					iconURL: interaction.guild?.iconURL({ size: 32 }) ?? DISCORD_CLYDE,
 				})
-				.setThumbnail(queue.songs[0].thumbnail ?? "")
+				.setThumbnail(queue.songs[0]?.thumbnail ?? "")
 				.setDescription(songs)
 				.addFields(
 					{ name: "Volume", value: queue.volume.toString(), inline: true },
@@ -80,11 +80,11 @@ export default {
 		let currentPage = 0;
 		const row = () => {
 			const prevPage = currentPage > 0 && queue.songs.length < currentPage + 10;
-			const nextPage = currentPage < 10 && queue.songs.length > currentPage;
+			const nextPage =
+				currentPage < 10 && queue.songs.length > currentPage + 10;
 
 			return new ActionRowBuilder<ButtonBuilder>().addComponents(
 				PREV_PAGE_BUTTON.setDisabled(!prevPage),
-				STOP_BUTTON,
 				NEXT_PAGE_BUTTON.setDisabled(!nextPage),
 				LOOP_BUTTON,
 				SHUFFLE_BUTTON,
@@ -101,7 +101,12 @@ export default {
 
 		collector.on("collect", async (i) => {
 			await i.deferUpdate();
-
+			if (!queue.playing) {
+				await response.edit({ embeds: [NO_QUEUE], components: [] });
+				setTimeout(async () => await response.delete(), 4000);
+				collector.stop();
+				return;
+			}
 			if (i.customId === ID.PrevPage) {
 				currentPage -= 10;
 
@@ -111,13 +116,6 @@ export default {
 				});
 
 				collector.resetTimer();
-			} else if (i.customId === ID.Stop) {
-				await queue.stop();
-				await response.edit({ embeds: [STOP], components: [] });
-
-				setTimeout(async () => await response.delete(), 4000);
-
-				collector.stop(ID.Stop);
 			} else if (i.customId === ID.NextPage) {
 				currentPage += 10;
 
@@ -139,7 +137,12 @@ export default {
 		collector.once("end", async (_, reason) => {
 			if (reason === ID.Stop) return;
 
-			await response.edit({ embeds: [embed(currentPage)], components: [] });
+			if (!queue.playing) {
+				await response.edit({ embeds: [NO_QUEUE], components: [] });
+				setTimeout(async () => await response.delete(), 4000);
+			} else {
+				await response.edit({ embeds: [embed(currentPage)], components: [] });
+			}
 		});
 	},
 };
