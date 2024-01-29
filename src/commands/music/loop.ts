@@ -2,10 +2,10 @@ import {
 	SlashCommandBuilder,
 	type ChatInputCommandInteraction,
 	EmbedBuilder,
-	type GuildMember,
 } from "discord.js";
-import { type GuildIdResolvable } from "distube";
-import { COLORS, NO_CHANNEL, NO_QUEUE } from "../../utils/embeds.js";
+import { Queue, type GuildIdResolvable } from "distube";
+import { COLORS } from "../../utils/embeds.js";
+import { validate } from "../../utils/utils.js";
 
 export default {
 	data: new SlashCommandBuilder()
@@ -28,18 +28,11 @@ export default {
 		const defer = await interaction.deferReply();
 		const queue = interaction.client.distube.getQueue(
 			interaction.guild as GuildIdResolvable,
-		);
-		const {
-			voice: { channel, guild },
-		} = interaction.member as GuildMember;
+		) as Queue;
+		const { invalid, message } = validate(interaction);
 
-		if (guild.id !== interaction.guildId || !channel) {
-			await defer.edit({ embeds: [NO_CHANNEL] });
-			setTimeout(async () => await defer.delete(), 4000);
-			return;
-		}
-		if (!queue) {
-			await defer.edit({ embeds: [NO_QUEUE] });
+		if (invalid) {
+			await defer.edit(message);
 			setTimeout(async () => await defer.delete(), 4000);
 			return;
 		}
