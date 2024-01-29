@@ -4,5 +4,6 @@ export default {
 	name: Events.Error,
 	async execute(e: Error) {
 		console.error(e);
+		process.exit(1);
 	},
 };
