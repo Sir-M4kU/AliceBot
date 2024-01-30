@@ -40,7 +40,7 @@ export default {
 				.slice(page, page + 10)
 				.map((song, i) => {
 					const { name = "", formattedDuration = "" } = song;
-					const id = page + 10 > queue.songs.length ? i + page : i;
+					const id = page >= 10 ? i + page : i;
 					const num = id === 0 ? "▶️" : `${id}.`;
 					return `${num} \t ${name} - ${formattedDuration}\n`;
 				})
@@ -71,13 +71,9 @@ export default {
 		};
 		let currentPage = 0;
 		const row = () => {
-			const prevPage = currentPage > 0 && queue.songs.length < currentPage + 10;
-			const nextPage =
-				currentPage < 10 && queue.songs.length > currentPage + 10;
-
 			return new ActionRowBuilder<ButtonBuilder>().addComponents(
-				PREV_PAGE_BUTTON.setDisabled(!prevPage),
-				NEXT_PAGE_BUTTON.setDisabled(!nextPage),
+				PREV_PAGE_BUTTON.setDisabled(currentPage === 0),
+				NEXT_PAGE_BUTTON.setDisabled(currentPage + 10 > queue.songs.length),
 				LOOP_BUTTON,
 				SHUFFLE_BUTTON,
 			);
