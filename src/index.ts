@@ -25,7 +25,6 @@ const [events, commands] = await Promise.all([
 client.commands = new Collection();
 client.distube = new DisTube(client, {
 	nsfw: true,
-	emitNewSongOnly: true,
 	leaveOnStop: false,
 	searchSongs: 10,
 	ytdlOptions: {
