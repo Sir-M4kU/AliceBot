@@ -9,7 +9,8 @@ import { NO_CHANNEL } from "../../utils/embeds.js";
 export default {
 	data: new SlashCommandBuilder()
 		.setName("join")
-		.setDescription("Join to the voice channel"),
+		.setDescription("Join to the voice channel")
+		.setDefaultMemberPermissions(1 << 5),
 	async execute(interaction: ChatInputCommandInteraction) {
 		const defer = await interaction.deferReply();
 		const { voices: voiceManager } = interaction.client.distube;
