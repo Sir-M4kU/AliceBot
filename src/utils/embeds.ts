@@ -66,3 +66,17 @@ export const NO_LYRICS = new EmbedBuilder()
 		"You didn't provide a song name/there is nothing playing right now",
 	)
 	.setColor(COLORS.Red);
+export const CLEAR_FILTERS = new EmbedBuilder()
+	.setTitle("Filters cleared")
+	.setDescription("All filters for this queue has been cleared")
+	.setColor(COLORS.Blue);
+export const FILTER_REMOVED = (filter: string) =>
+	new EmbedBuilder()
+		.setTitle("Filter removed")
+		.setDescription(`The \`${filter}\` filter has been removed`)
+		.setColor(COLORS.Purple);
+export const FILTER_ADDED = (filter: string) =>
+	new EmbedBuilder()
+		.setTitle("Filter added")
+		.setDescription(`The \`${filter}\` filter has been removed`)
+		.setColor(COLORS.Purple);
