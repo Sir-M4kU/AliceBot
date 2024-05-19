@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "watch": "tsc -w",
-    "dev": "node --watch dist"
+    "dev": "node --watch dist",
+    "format": "biome format --write src"
   },
   "keywords": [],
   "author": "Camilo Moreno <dustofm4ku@gmail.com>",
