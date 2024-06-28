@@ -21,14 +21,15 @@
 		"typescript": "5.3.3"
 	},
 	"dependencies": {
-		"@discordjs/opus": "0.9.0",
 		"@discordjs/voice": "0.17.0",
 		"@distube/soundcloud": "2.0.1",
 		"@distube/spotify": "2.0.1",
+		"@distube/youtube": "1.0.2",
 		"discord.js": "14.15.3",
 		"distube": "5.0.1",
 		"dotenv": "16.3.2",
 		"genius-lyrics": "4.4.6",
+		"opusscript": "0.1.1",
 		"sodium-native": "4.1.1"
 	},
 	"optionalDependencies": {

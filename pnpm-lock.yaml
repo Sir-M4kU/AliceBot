@@ -8,30 +8,33 @@ importers:
 
   .:
     dependencies:
-      '@discordjs/opus':
-        specifier: 0.9.0
-        version: 0.9.0
       '@discordjs/voice':
         specifier: 0.17.0
-        version: 0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+        version: 0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3)
       '@distube/soundcloud':
         specifier: 2.0.1
-        version: 2.0.1(distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)))
+        version: 2.0.1(distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)))
       '@distube/spotify':
         specifier: 2.0.1
-        version: 2.0.1(distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)))
+        version: 2.0.1(distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)))
+      '@distube/youtube':
+        specifier: 1.0.2
+        version: 1.0.2(distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)))
       discord.js:
         specifier: 14.15.3
         version: 14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       distube:
         specifier: 5.0.1
-        version: 5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3))
+        version: 5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3))
       dotenv:
         specifier: 16.3.2
         version: 16.3.2
       genius-lyrics:
         specifier: 4.4.6
         version: 4.4.6
+      opusscript:
+        specifier: 0.1.1
+        version: 0.1.1
       sodium-native:
         specifier: 4.1.1
         version: 4.1.1
@@ -160,6 +163,23 @@ packages:
     resolution: {integrity: sha512-7R1ylUj2a/uNoyavnW77aVy37BhyCoYpVLFtwN12rqupsHwnpDvKrfGWfhm3gLHf+1vjSF6iA8fIwvAXR9XVGg==}
     peerDependencies:
       distube: '5'
+
+  '@distube/youtube@1.0.2':
+    resolution: {integrity: sha512-vNOE7kGhg3pC87iqT3Q4eu+yTae8Nr3J1XDR67YMH9HAg1RsPjwM7TvfabZoGxIUiPl4ua/PG6s8Nfxf2U9cxQ==}
+    peerDependencies:
+      distube: '5'
+
+  '@distube/ytdl-core@4.13.4':
+    resolution: {integrity: sha512-AMuKFWN8MHq+gtlhMq2O4jMm7KNtFbXpFMxK6NgDsyMxZT+obH+wVCu/2sj+ZBn6HOnGofvrmb6kAx0P59+lFw==}
+    engines: {node: '>=16'}
+
+  '@distube/ytpl@1.2.1':
+    resolution: {integrity: sha512-cp9nDYyGTZ2DNHURQXS76ptKWijLMspoxJEj03i++9tJf0LFGTWkskL3sLwcY4qQPLXjlH9FAXwwpjVttdXvZQ==}
+    engines: {node: '>=8'}
+
+  '@distube/ytsr@2.0.4':
+    resolution: {integrity: sha512-OiSWgARQ9LTj+dXt3jmMFzUH4l86VVCD4dVC4hEHNXdqp+DyU4QEzc+W6YY6//kWkvzTaUxOo7JUY7lBzwIF0A==}
+    engines: {node: '>=14.0'}
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -334,6 +354,10 @@ packages:
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
+
+  agent-base@7.1.1:
+    resolution: {integrity: sha512-H0TSyFNDMomMNJQBn8wFV5YC/2eJ+VXECwOadZJT554xP6cODZHPX3H9QMQECxvrgiSOP1pHjy1sMWQVYJOUOA==}
+    engines: {node: '>= 14'}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -549,6 +573,16 @@ packages:
   himalaya@1.1.0:
     resolution: {integrity: sha512-LLase1dHCRMel68/HZTFft0N0wti0epHr3nNY7ynpLbyZpmrKMQ8YIpiOV77TM97cNpC8Wb2n6f66IRggwdWPw==}
 
+  http-cookie-agent@6.0.5:
+    resolution: {integrity: sha512-sfZ8fDgDP3B1YB+teqSnAK1aPgBu8reUUGxSsndP2XnYN6cM29EURXWXZqQQiaRdor3B4QjpkUNfv21syaO4DA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      tough-cookie: ^4.0.0
+      undici: ^5.11.0 || ^6.0.0
+    peerDependenciesMeta:
+      undici:
+        optional: true
+
   https-proxy-agent@5.0.1:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
@@ -569,6 +603,10 @@ packages:
 
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+
+  m3u8stream@0.8.6:
+    resolution: {integrity: sha512-LZj8kIVf9KCphiHmH7sbFQTVe4tOemb202fWwvJwR9W5ENW/1hxJN6ksAWGhQgSBSa3jyWhnjKU1Fw1GaOdbyA==}
+    engines: {node: '>=12'}
 
   magic-bytes.js@1.10.0:
     resolution: {integrity: sha512-/k20Lg2q8LE5xiaaSkMXk4sfvI+9EGEykFS4b0CHHGWqDYU0bGUFSwchNOMA56D7TCs9GwVTkqe9als1/ns8UQ==}
@@ -593,6 +631,10 @@ packages:
     resolution: {integrity: sha512-USPkMeET31rOMiarsBNIHZKLGgvKc/LrjofAnBlOttf5ajRvqiRA8QsenbcooctK6d6Ts6aqZXBA+XbkKthiQg==}
     engines: {node: '>=4.0.0'}
     hasBin: true
+
+  miniget@4.2.3:
+    resolution: {integrity: sha512-SjbDPDICJ1zT+ZvQwK0hUcRY4wxlhhNpHL9nJOB2MEAXRGagTljsO8MEDzQMTFf0Q8g4QNi8P9lEm/g7e+qgzA==}
+    engines: {node: '>=12'}
 
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -658,6 +700,9 @@ packages:
   once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
 
+  opusscript@0.1.1:
+    resolution: {integrity: sha512-mL0fZZOUnXdZ78woRXp18lApwpp0lF5tozJOD1Wut0dgrA9WuQTgSels/CSmFleaAZrJi/nci5KOVtbuxeWoQA==}
+
   path-is-absolute@1.0.1:
     resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
     engines: {node: '>=0.10.0'}
@@ -679,13 +724,26 @@ packages:
       opusscript:
         optional: true
 
+  psl@1.9.0:
+    resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
+
+  punycode@2.3.1:
+    resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
+    engines: {node: '>=6'}
+
   qs@6.12.1:
     resolution: {integrity: sha512-zWmv4RSuB9r2mYQw3zxQuHWeU+42aKi1wWig/j4ele4ygELZ7PEO6MM7rim9oAQH2A5MWfsAVf/jPvTPgCbvUQ==}
     engines: {node: '>=0.6'}
 
+  querystringify@2.2.0:
+    resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
+
   readable-stream@3.6.2:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
     engines: {node: '>= 6'}
+
+  requires-port@1.0.0:
+    resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
 
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
@@ -697,6 +755,9 @@ packages:
 
   safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
+
+  sax@1.4.1:
+    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -761,6 +822,10 @@ packages:
   tiny-typed-emitter@2.1.0:
     resolution: {integrity: sha512-qVtvMxeXbVej0cQWKqVSSAHmKZEHAvxdF8HEUBFWts8h+xEo5m/lEiPakuyZ3BnCBjOD8i24kzNOiOLLgsSxhA==}
 
+  tough-cookie@4.1.4:
+    resolution: {integrity: sha512-Loo5UUvLD9ScZ6jh8beX1T6sO1w2/MpCRpEP7V280GKMVUQ0Jzar2U3UJPsrdbziLEMMhu3Ujnq//rhiFuIeag==}
+    engines: {node: '>=6'}
+
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
 
@@ -797,6 +862,13 @@ packages:
   undici@6.18.2:
     resolution: {integrity: sha512-o/MQLTwRm9IVhOqhZ0NQ9oXax1ygPjw6Vs+Vq/4QRjbOAC3B1GCHy7TYxxbExKlb7bzDRzt9vBWU6BDz0RFfYg==}
     engines: {node: '>=18.17'}
+
+  universalify@0.2.0:
+    resolution: {integrity: sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg==}
+    engines: {node: '>= 4.0.0'}
+
+  url-parse@1.5.10:
+    resolution: {integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==}
 
   utf-8-validate@6.0.3:
     resolution: {integrity: sha512-uIuGf9TWQ/y+0Lp+KGZCMuJWc3N9BHA+l/UmHd/oUHwJJDeysyTRxNQVkbzsIWfGFbRe3OcgML/i0mvVRPOyDA==}
@@ -901,6 +973,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    optional: true
 
   '@discordjs/opus@0.9.0':
     dependencies:
@@ -909,6 +982,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    optional: true
 
   '@discordjs/rest@2.3.0':
     dependencies:
@@ -924,11 +998,11 @@ snapshots:
 
   '@discordjs/util@1.1.0': {}
 
-  '@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3)':
+  '@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3)':
     dependencies:
       '@types/ws': 8.5.10
       discord-api-types: 0.37.83
-      prism-media: 1.3.5(@discordjs/opus@0.9.0)
+      prism-media: 1.3.5(@discordjs/opus@0.9.0)(opusscript@0.1.1)
       tslib: 2.6.3
       ws: 8.17.0(bufferutil@4.0.8)(utf-8-validate@6.0.3)
     transitivePeerDependencies:
@@ -954,20 +1028,48 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@distube/soundcloud@2.0.1(distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)))':
+  '@distube/soundcloud@2.0.1(distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)))':
     dependencies:
-      distube: 5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3))
+      distube: 5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3))
       soundcloud.ts: 0.5.3
 
-  '@distube/spotify@2.0.1(distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)))':
+  '@distube/spotify@2.0.1(distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)))':
     dependencies:
-      distube: 5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3))
+      distube: 5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3))
       spotify-uri: 4.1.0
       spotify-url-info: 3.2.15
       spotify-web-api-node: 5.0.2
       undici: 6.18.2
     transitivePeerDependencies:
       - supports-color
+
+  '@distube/youtube@1.0.2(distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)))':
+    dependencies:
+      '@distube/ytdl-core': 4.13.4
+      '@distube/ytpl': 1.2.1
+      '@distube/ytsr': 2.0.4
+      distube: 5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3))
+    transitivePeerDependencies:
+      - supports-color
+
+  '@distube/ytdl-core@4.13.4':
+    dependencies:
+      http-cookie-agent: 6.0.5(tough-cookie@4.1.4)(undici@6.18.2)
+      m3u8stream: 0.8.6
+      miniget: 4.2.3
+      sax: 1.4.1
+      tough-cookie: 4.1.4
+      undici: 6.18.2
+    transitivePeerDependencies:
+      - supports-color
+
+  '@distube/ytpl@1.2.1':
+    dependencies:
+      undici: 5.28.4
+
+  '@distube/ytsr@2.0.4':
+    dependencies:
+      undici: 6.18.2
 
   '@esbuild/aix-ppc64@0.21.5':
     optional: true
@@ -1061,26 +1163,38 @@ snapshots:
 
   '@vladfrangu/async_event_emitter@2.2.4': {}
 
-  abbrev@1.1.1: {}
+  abbrev@1.1.1:
+    optional: true
 
   agent-base@6.0.2:
     dependencies:
       debug: 4.3.5
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
-  ansi-regex@5.0.1: {}
+  agent-base@7.1.1:
+    dependencies:
+      debug: 4.3.5
+    transitivePeerDependencies:
+      - supports-color
 
-  aproba@2.0.0: {}
+  ansi-regex@5.0.1:
+    optional: true
+
+  aproba@2.0.0:
+    optional: true
 
   are-we-there-yet@2.0.0:
     dependencies:
       delegates: 1.0.0
       readable-stream: 3.6.2
+    optional: true
 
   asynckit@0.4.0: {}
 
-  balanced-match@1.0.2: {}
+  balanced-match@1.0.2:
+    optional: true
 
   boolbase@1.0.0: {}
 
@@ -1088,6 +1202,7 @@ snapshots:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
+    optional: true
 
   bufferutil@4.0.8:
     dependencies:
@@ -1102,9 +1217,11 @@ snapshots:
       get-intrinsic: 1.2.4
       set-function-length: 1.2.2
 
-  chownr@2.0.0: {}
+  chownr@2.0.0:
+    optional: true
 
-  color-support@1.1.3: {}
+  color-support@1.1.3:
+    optional: true
 
   combined-stream@1.0.8:
     dependencies:
@@ -1112,9 +1229,11 @@ snapshots:
 
   component-emitter@1.3.1: {}
 
-  concat-map@0.0.1: {}
+  concat-map@0.0.1:
+    optional: true
 
-  console-control-strings@1.1.0: {}
+  console-control-strings@1.1.0:
+    optional: true
 
   cookiejar@2.1.4: {}
 
@@ -1140,9 +1259,11 @@ snapshots:
 
   delayed-stream@1.0.0: {}
 
-  delegates@1.0.0: {}
+  delegates@1.0.0:
+    optional: true
 
-  detect-libc@2.0.3: {}
+  detect-libc@2.0.3:
+    optional: true
 
   discord-api-types@0.37.83: {}
 
@@ -1164,9 +1285,9 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)):
+  distube@5.0.1(@discordjs/voice@0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3))(discord.js@14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)):
     dependencies:
-      '@discordjs/voice': 0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(utf-8-validate@6.0.3)
+      '@discordjs/voice': 0.17.0(@discordjs/opus@0.9.0)(bufferutil@4.0.8)(opusscript@0.1.1)(utf-8-validate@6.0.3)
       discord.js: 14.15.3(bufferutil@4.0.8)(utf-8-validate@6.0.3)
       tiny-typed-emitter: 2.1.0
       undici: 6.18.2
@@ -1191,7 +1312,8 @@ snapshots:
 
   dotenv@16.3.2: {}
 
-  emoji-regex@8.0.0: {}
+  emoji-regex@8.0.0:
+    optional: true
 
   entities@4.5.0: {}
 
@@ -1242,8 +1364,10 @@ snapshots:
   fs-minipass@2.1.0:
     dependencies:
       minipass: 3.3.6
+    optional: true
 
-  fs.realpath@1.0.0: {}
+  fs.realpath@1.0.0:
+    optional: true
 
   fsevents@2.3.3:
     optional: true
@@ -1261,6 +1385,7 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wide-align: 1.1.5
+    optional: true
 
   genius-lyrics@4.4.6:
     dependencies:
@@ -1287,6 +1412,7 @@ snapshots:
       minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
+    optional: true
 
   gopd@1.0.1:
     dependencies:
@@ -1300,7 +1426,8 @@ snapshots:
 
   has-symbols@1.0.3: {}
 
-  has-unicode@2.0.1: {}
+  has-unicode@2.0.1:
+    optional: true
 
   hasown@2.0.2:
     dependencies:
@@ -1310,31 +1437,49 @@ snapshots:
 
   himalaya@1.1.0: {}
 
+  http-cookie-agent@6.0.5(tough-cookie@4.1.4)(undici@6.18.2):
+    dependencies:
+      agent-base: 7.1.1
+      tough-cookie: 4.1.4
+    optionalDependencies:
+      undici: 6.18.2
+    transitivePeerDependencies:
+      - supports-color
+
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
       debug: 4.3.5
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   inflight@1.0.6:
     dependencies:
       once: 1.4.0
       wrappy: 1.0.2
+    optional: true
 
   inherits@2.0.4: {}
 
-  is-fullwidth-code-point@3.0.0: {}
+  is-fullwidth-code-point@3.0.0:
+    optional: true
 
   lodash.snakecase@4.1.1: {}
 
   lodash@4.17.21: {}
+
+  m3u8stream@0.8.6:
+    dependencies:
+      miniget: 4.2.3
+      sax: 1.4.1
 
   magic-bytes.js@1.10.0: {}
 
   make-dir@3.1.0:
     dependencies:
       semver: 6.3.1
+    optional: true
 
   methods@1.1.2: {}
 
@@ -1346,30 +1491,39 @@ snapshots:
 
   mime@2.6.0: {}
 
+  miniget@4.2.3: {}
+
   minimatch@3.1.2:
     dependencies:
       brace-expansion: 1.1.11
+    optional: true
 
   minipass@3.3.6:
     dependencies:
       yallist: 4.0.0
+    optional: true
 
-  minipass@5.0.0: {}
+  minipass@5.0.0:
+    optional: true
 
   minizlib@2.1.2:
     dependencies:
       minipass: 3.3.6
       yallist: 4.0.0
+    optional: true
 
-  mkdirp@1.0.4: {}
+  mkdirp@1.0.4:
+    optional: true
 
   ms@2.1.2: {}
 
-  node-addon-api@5.1.0: {}
+  node-addon-api@5.1.0:
+    optional: true
 
   node-fetch@2.7.0:
     dependencies:
       whatwg-url: 5.0.0
+    optional: true
 
   node-gyp-build@4.8.1: {}
 
@@ -1381,6 +1535,7 @@ snapshots:
   nopt@5.0.0:
     dependencies:
       abbrev: 1.1.1
+    optional: true
 
   npmlog@5.0.1:
     dependencies:
@@ -1388,28 +1543,41 @@ snapshots:
       console-control-strings: 1.1.0
       gauge: 3.0.2
       set-blocking: 2.0.0
+    optional: true
 
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
 
-  object-assign@4.1.1: {}
+  object-assign@4.1.1:
+    optional: true
 
   object-inspect@1.13.1: {}
 
   once@1.4.0:
     dependencies:
       wrappy: 1.0.2
+    optional: true
 
-  path-is-absolute@1.0.1: {}
+  opusscript@0.1.1: {}
 
-  prism-media@1.3.5(@discordjs/opus@0.9.0):
+  path-is-absolute@1.0.1:
+    optional: true
+
+  prism-media@1.3.5(@discordjs/opus@0.9.0)(opusscript@0.1.1):
     optionalDependencies:
       '@discordjs/opus': 0.9.0
+      opusscript: 0.1.1
+
+  psl@1.9.0: {}
+
+  punycode@2.3.1: {}
 
   qs@6.12.1:
     dependencies:
       side-channel: 1.0.6
+
+  querystringify@2.2.0: {}
 
   readable-stream@3.6.2:
     dependencies:
@@ -1417,19 +1585,26 @@ snapshots:
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
 
+  requires-port@1.0.0: {}
+
   resolve-pkg-maps@1.0.0: {}
 
   rimraf@3.0.2:
     dependencies:
       glob: 7.2.3
+    optional: true
 
   safe-buffer@5.2.1: {}
 
-  semver@6.3.1: {}
+  sax@1.4.1: {}
+
+  semver@6.3.1:
+    optional: true
 
   semver@7.6.2: {}
 
-  set-blocking@2.0.0: {}
+  set-blocking@2.0.0:
+    optional: true
 
   set-function-length@1.2.2:
     dependencies:
@@ -1447,7 +1622,8 @@ snapshots:
       get-intrinsic: 1.2.4
       object-inspect: 1.13.1
 
-  signal-exit@3.0.7: {}
+  signal-exit@3.0.7:
+    optional: true
 
   sodium-native@4.1.1:
     dependencies:
@@ -1475,6 +1651,7 @@ snapshots:
       emoji-regex: 8.0.0
       is-fullwidth-code-point: 3.0.0
       strip-ansi: 6.0.1
+    optional: true
 
   string_decoder@1.3.0:
     dependencies:
@@ -1483,6 +1660,7 @@ snapshots:
   strip-ansi@6.0.1:
     dependencies:
       ansi-regex: 5.0.1
+    optional: true
 
   superagent@6.1.0:
     dependencies:
@@ -1508,10 +1686,19 @@ snapshots:
       minizlib: 2.1.2
       mkdirp: 1.0.4
       yallist: 4.0.0
+    optional: true
 
   tiny-typed-emitter@2.1.0: {}
 
-  tr46@0.0.3: {}
+  tough-cookie@4.1.4:
+    dependencies:
+      psl: 1.9.0
+      punycode: 2.3.1
+      universalify: 0.2.0
+      url-parse: 1.5.10
+
+  tr46@0.0.3:
+    optional: true
 
   ts-mixer@6.0.4: {}
 
@@ -1538,6 +1725,13 @@ snapshots:
 
   undici@6.18.2: {}
 
+  universalify@0.2.0: {}
+
+  url-parse@1.5.10:
+    dependencies:
+      querystringify: 2.2.0
+      requires-port: 1.0.0
+
   utf-8-validate@6.0.3:
     dependencies:
       node-gyp-build: 4.8.1
@@ -1545,22 +1739,27 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  webidl-conversions@3.0.1: {}
+  webidl-conversions@3.0.1:
+    optional: true
 
   whatwg-url@5.0.0:
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
+    optional: true
 
   wide-align@1.1.5:
     dependencies:
       string-width: 4.2.3
+    optional: true
 
-  wrappy@1.0.2: {}
+  wrappy@1.0.2:
+    optional: true
 
   ws@8.17.0(bufferutil@4.0.8)(utf-8-validate@6.0.3):
     optionalDependencies:
       bufferutil: 4.0.8
       utf-8-validate: 6.0.3
 
-  yallist@4.0.0: {}
+  yallist@4.0.0:
+    optional: true
