@@ -1,37 +1,32 @@
 import type {
+	AutocompleteInteraction,
 	ChatInputCommandInteraction,
-	Collection,
-	SlashCommandBuilder,
-	CacheType,
 	ClientEvents,
+	SlashCommandBuilder
 } from "discord.js";
-import type { DisTube, DisTubeEvents } from "distube";
-import type { Client as GeniusClient } from "genius-lyrics";
+import type { GuildQueueEvents } from "discord-player";
 
-export interface SlashCommand {
+interface Command {
 	data: SlashCommandBuilder;
-	execute: (
-		interaction: ChatInputCommandInteraction<CacheType>,
-	) => Promise<void>;
+
+	execute: (interaction: ChatInputCommandInteraction) => Promise<void>;
+	autocomplete?: (interaction: AutocompleteInteraction) => Promise<void>;
 }
 
-export interface DiscordEvent {
-	name: keyof ClientEvents;
-	once?: boolean;
-	execute: (...args: ClientEvents[keyof ClientEvents]) => Promise<void>;
-}
-export interface DistubeEvent {
-	name: keyof DisTubeEvents;
-	distubeEvent: boolean;
-	execute: (...args: DisTubeEvents[keyof DisTubeEvents]) => Promise<void>;
+interface DiscordEvent<EventName extends keyof ClientEvents> {
+	name: EventName;
+	once?: true;
+
+	execute: (...args: ClientEvents[EventName]) => Promise<void>;
 }
 
-export type Event = DistubeEvent | DiscordEvent;
-
-declare module "discord.js" {
-	export interface Client {
-		commands: Collection<string, SlashCommand>;
-		distube: DisTube;
-		genius: GeniusClient;
-	}
+interface PlayerEvent<EventName extends keyof GuildQueueEvents> {
+	name: EventName;
+	isPlayer: true;
+	execute: GuildQueueEvents<ChatInputCommandInteraction>[EventName];
 }
+
+// biome-ignore lint: implicit any
+type Event = DiscordEvent<any> | PlayerEvent<any>;
+
+export type { Command, Event, DiscordEvent, PlayerEvent };

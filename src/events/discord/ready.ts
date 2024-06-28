@@ -1,13 +1,9 @@
-import { Events, Client, ActivityType } from "discord.js";
+import type { DiscordEvent } from "../../types.js";
 
 export default {
-	name: Events.ClientReady,
-	once: true,
-	execute(client: Client<true>) {
-		console.log(`Logged in as ${client.user.tag}`);
-		client.user.setActivity({
-			type: ActivityType.Listening,
-			name: "new interactions...",
-		});
-	},
-};
+  name: "ready",
+  once: true,
+  async execute(client) {
+    console.log(`Logged in as ${client.user?.tag}!`);
+  }
+} as DiscordEvent<"ready">;

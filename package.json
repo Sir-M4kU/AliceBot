@@ -1,39 +1,29 @@
 {
-	"name": "alicebot",
-	"description": "",
-	"type": "module",
-	"main": "dist/index.js",
-	"scripts": {
-		"dev:bot": "tsx watch src/index.ts",
-		"dev:refresh": "tsx src/refresh-commands.ts",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start:refresh": "node dist/refresh-commands.js",
-		"start:bot": "node .",
-		"build": "tsc"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"@biomejs/biome": "1.5.3",
-		"@types/tough-cookie": "4.0.5",
-		"tsx": "4.15.4",
-		"typescript": "5.3.3"
-	},
-	"dependencies": {
-		"@discordjs/opus": "0.9.0",
-		"@discordjs/voice": "0.17.0",
-		"@distube/soundcloud": "2.0.1",
-		"@distube/spotify": "2.0.1",
-		"discord.js": "14.15.3",
-		"distube": "5.0.1",
-		"dotenv": "16.3.2",
-		"genius-lyrics": "4.4.6",
-		"sodium-native": "4.1.1"
-	},
-	"optionalDependencies": {
-		"bufferutil": "4.0.8",
-		"utf-8-validate": "6.0.3"
-	},
-	"packageManager": "pnpm@9.3.0+sha256.e1f9e8d1a16607a46dd3c158b5f7a7dc7945501d1c6222d454d63d033d1d918f"
+  "$schema": "https://json.schemastore.org/package",
+  "name": "alicebot",
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {},
+  "author": "Camilo Moreno <dustofm4ku@gmail.com>",
+  "engines": {
+    "node": ">=20.12.0"
+  },
+  "dependencies": {
+    "@discord-player/extractor": "4.4.7",
+    "discord-player": "6.6.10",
+    "discord.js": "14.15.3",
+    "mediaplex": "0.0.9",
+    "youtube-ext": "1.1.25"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@types/node": "20.14.9",
+    "tsx": "4.15.8",
+    "typescript": "5.5.2"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.8",
+    "utf-8-validate": "^6.0.4"
+  },
+  "packageManager": "pnpm@9.5.0-beta.0+sha512.c2e60e7ed04e459591c982f2760cd8f7d1f48fe1ca4d46ccbbf8377df1eb2d077ace1e9d334b06250dddf23c03b4562858f77992b9a3bb4a93355aefd173df32"
 }
